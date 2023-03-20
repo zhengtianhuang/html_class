@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        async function a() {
+            console.log("a")
+        }
+        async function b() {
+            fetch('http://127.0.0.1:5000/menu')
+                .then(function (res) {
+                    return res.json()
+                })
+                .then(function (menuData) {
+                    console.log(menuData)
+                })
+        }
+        async function c() {
+            console.log("c")
+        }
+        async function main() {
+            await a()
+            await b()
+            await c()
+        }
+        main()
+    </script>
+</body>
+
+</html>

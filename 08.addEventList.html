@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="todoInput" type="text" placeholder="please in put something..."><button>Add</button>
+    <ul id="result"></ul>
+    <script>
+        const btn = document.querySelector("button")
+        const todoInput = document.querySelector("#todoInput")
+        const result = document.querySelector("#result")
+        btn.addEventListener('click', function (event) {
+            const userText = todoInput.value
+            const liObj = document.createElement("li")
+            liObj.innerHTML = userText
+            result.appendChild(liObj)
+            todoInput.value = ""
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calc</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        button {
+            height: 20%;
+            background-color: aliceblue;
+        }
+
+        h2 {
+            margin: 0;
+        }
+
+        #container1 {
+            background-color: aliceblue;
+            width: 200px;
+            height: 200px;
+        }
+
+        #display {
+            border: 1px solid pink;
+            margin-left: 10px;
+            margin-right: 10px;
+            /* padding-left: 10px; */
+            height: 20%
+        }
+
+        #button {
+            height: 80%;
+            display: flex;
+            flex: 1 1 0
+        }
+
+        #number {
+            width: 70%;
+            padding-left: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            /* justify-content: space-bet
+            ween; */
+        }
+
+        #aru {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            /* gap: 5%; */
+        }
+
+        #number button {
+            width: 30%;
+
+            /* height: 20%; */
+        }
+
+        #number #zero {
+            width: 90%;
+        }
+
+
+        #aru button {
+
+            width: 60%;
+            /* text-align: center */
+            /* width: 60%; */
+            /* height: 25%; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container1">
+        <div id="display">
+        </div>
+        <div id="button">
+            <div id="number">
+                <button>1</button><button>2</button><button>3</button><button>4</button><button>5</button><button>6</button><button>7</button><button>8</button><button>9</button><button
+                    id="zero">0</button>
+            </div>
+            <div id="aru">
+                <button>+</button><button>-</button><button>=</button><button>c</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const numberSelector = document.querySelector("#number")
+        const displaySelector = document.querySelector("#display")
+        const aruSelector = document.querySelector("#aru")
+        let number1String = ""
+        let number2String = ""
+        let aru = -1
+        numberSelector.addEventListener("click", function (event) {
+            if (event.target.innerText < 10) {
+                let number = ""
+                if (aru == -1) {
+                    number1String += event.target.innerText
+                    displaySelector.innerHTML = `<h2>${number1String}</h2>`
+
+                }
+                else {
+                    number2String += event.target.innerText
+                    displaySelector.innerHTML = `<h2>${number2String}</h2>`
+                }
+            }
+        })
+        aruSelector.addEventListener('click', function (event) {
+            if (number1String != "") {
+                if (event.target.innerText == "+") {
+                    // displaySelector.innerHTML += "+"
+                    aru = 1
+                }
+                else if (event.target.innerText == "-") {
+                    // displaySelector.innerHTML += "-"
+                    aru = 0
+                }
+                else if (event.target.innerText == "=") {
+                    // displaySelector.innerHTML += "="
+                    if (aru == 1) {
+                        console.log(parseInt(number1String))
+                        number1String = parseInt(number1String) + parseInt(number2String)
+                        displaySelector.innerHTML = `<h2>${number1String}</h2>`
+                        aru = -1
+                        number2String = ""
+                    }
+                    else if (aru == 0) {
+                        number1String = parseInt(number1String) - parseInt(number2String)
+                        displaySelector.innerHTML = `<h2>${number1String}</h2>`
+                        aru = -1
+                        number2String = ""
+                    }
+                }
+
+            }
+            if (event.target.innerText == "c") {
+                console.log("c")
+                aru = -1
+                number1String = ""
+                number2String = ""
+                displaySelector.innerHTML = ""
+            }
+        })
+        console.log(0 || NaN || NaN || 8)
+    </script>
+</body>
+
+</html>
