@@ -78,22 +78,44 @@
         }
 
         .portfolio-grid {
+            height: 300px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
         }
 
         .portfolio-item {
+            height: 100%;
             width: calc(33.33% - 20px);
             margin-bottom: 40px;
             padding: 20px;
             border: 1px solid #ccc;
             box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-            transition: height 0.3s ease;
+            overflow: hidden;
         }
 
-        .portfolio-item:hover {
-            height: 400px;
+        .portfolio-item:hover .scrollable-content {
+            animation: scroll-up 5s linear infinite;
+        }
+
+        .scrollable-content {
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .scrollable-content:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-up {
+            0% {
+                top: 0;
+            }
+
+            100% {
+                top: -100%;
+            }
         }
 
         .portfolio-item h3 {
@@ -146,11 +168,30 @@
             <div class="portfolio-grid">
                 <div class="portfolio-item">
                     <h3>Project 1</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel ultrices leo. Nulla et tellus
+                    <p class="scrollable-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel
+                        ultrices leo. Nulla et tellus
+                        enim. Morbi blandit urna vel risus malesuada, in bibendum arcu vestibulum.Lorem ipsum dolor sit
+                        amet, consectetur adipiscing elit. Donec vel
+                        ultrices leo. Nulla et tellus
+                        enim. Morbi blandit urna vel risus malesuada, in bibendum arcu vestibulum.Lorem ipsum dolor sit
+                        amet, consectetur adipiscing elit. Donec vel
+                        ultrices leo. Nulla et tellus
+                        enim. Morbi blandit urna vel risus malesuada, in bibendum arcu vestibulum.Lorem ipsum dolor sit
+                        amet, consectetur adipiscing elit. Donec vel
+                        ultrices leo. Nulla et tellus
+                        enim. Morbi blandit urna vel risus malesuada, in bibendum arcu vestibulum.Lorem ipsum dolor sit
+                        amet, consectetur adipiscing elit. Donec vel
+                        ultrices leo. Nulla et tellus
+                        enim. Morbi blandit urna vel risus malesuada, in bibendum arcu vestibulum.Lorem ipsum dolor sit
+                        amet, consectetur adipiscing elit. Donec vel
+                        ultrices leo. Nulla et tellus
+                        enim. Morbi blandit urna vel risus malesuada, in bibendum arcu vestibulum.Lorem ipsum dolor sit
+                        amet, consectetur adipiscing elit. Donec vel
+                        ultrices leo. Nulla et tellus
+                        enim. Morbi blandit urna vel risus malesuada, in bibendum arcu vestibulum.Lorem ipsum dolor sit
+                        amet, consectetur adipiscing elit. Donec vel
+                        ultrices leo. Nulla et tellus
                         enim. Morbi blandit urna vel risus malesuada, in bibendum arcu vestibulum.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel ultrices leo. Nulla et tellus
-                        enim. Morbi blandit urna vel risus malesuada, in bibendum arcu vestibulum.</p>
-
                     <a href="#" class="view-code">View Code</a>
                 </div>
                 <div class="portfolio-item">
@@ -185,9 +226,26 @@
                 </div>
             </div>
         </section>
-
     </main>
 
+    <script>
+        // 取得所有 portfolio-item 元素
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        // 對每個 portfolio-item 元素執行以下操作
+        portfolioItems.forEach(item => {
+            // 取得內容元素和滾動區塊元素
+            const content = item.querySelector('.content');
+            console.log(item)
+            const scrollableContent = item.querySelector('.scrollable-content');
+
+            // 如果內容元素高度超過滾動區塊元素高度，就在滾動區塊元素上加上滾動效果
+            if (content.offsetHeight > scrollableContent.offsetHeight) {
+                scrollableContent.innerHTML += content.innerHTML;
+            }
+        });
+
+    </script>
 </body>
 
 </html>
