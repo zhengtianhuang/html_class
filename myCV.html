@@ -85,6 +85,7 @@
         }
 
         .portfolio-item {
+            position: relative;
             height: 100%;
             width: calc(33.33% - 20px);
             margin-bottom: 40px;
@@ -99,7 +100,7 @@
         }
 
         .scrollable-content {
-            height: 100%;
+            /* height: 100%; */
             overflow: hidden;
             position: relative;
         }
@@ -120,16 +121,23 @@
 
         .portfolio-item h3 {
             font-size: 24px;
-            margin-bottom: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         .portfolio-item p {
+            /* height: 200%; */
             font-size: 16px;
             margin-bottom: 20px;
         }
 
         .view-code {
-            display: inline-block;
+            z-index: 999;
+            display: flex;
+            position: absolute;
+            left: 50%;
+            bottom: 10px;
+            transform: translate(-50%, 0%);
             padding: 10px 20px;
             background-color: #333;
             color: #fff;
@@ -191,8 +199,10 @@
                         enim. Morbi blandit urna vel risus malesuada, in bibendum arcu vestibulum.Lorem ipsum dolor sit
                         amet, consectetur adipiscing elit. Donec vel
                         ultrices leo. Nulla et tellus
-                        enim. Morbi blandit urna vel risus malesuada, in bibendum arcu vestibulum.</p>
+                        enim. Morbi blandit urna vel risus malesuada, in bibendum arcu ves.
+                    </p>
                     <a href="#" class="view-code">View Code</a>
+
                 </div>
                 <div class="portfolio-item">
                     <h3>Project 2</h3>
@@ -229,21 +239,6 @@
     </main>
 
     <script>
-        // 取得所有 portfolio-item 元素
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-        // 對每個 portfolio-item 元素執行以下操作
-        portfolioItems.forEach(item => {
-            // 取得內容元素和滾動區塊元素
-            const content = item.querySelector('.content');
-            console.log(item)
-            const scrollableContent = item.querySelector('.scrollable-content');
-
-            // 如果內容元素高度超過滾動區塊元素高度，就在滾動區塊元素上加上滾動效果
-            if (content.offsetHeight > scrollableContent.offsetHeight) {
-                scrollableContent.innerHTML += content.innerHTML;
-            }
-        });
 
     </script>
 </body>
